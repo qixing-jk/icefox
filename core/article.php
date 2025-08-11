@@ -73,15 +73,18 @@ function removeImgAndVideoTags($html)
 {
 
     $dom = new DOMDocument();
-    // 启用 Tidy 修复（需安装 PHP Tidy 扩展）
-    $tidyConfig = [
-        'clean' => true,
-        'output-html' => true,
-        'show-body-only' => true,
-        'wrap' => 0,
-    ];
-    $tidy = new tidy();
-    $html = $tidy->repairString($html, $tidyConfig);
+    // 只有当 Tidy 扩展存在时，才用它修复 HTML
+    if (extension_loaded('tidy')) {
+        // 启用 Tidy 修复（需安装 PHP Tidy 扩展）
+        $tidyConfig = [
+            'clean' => true,
+            'output-html' => true,
+            'show-body-only' => true,
+            'wrap' => 0,
+        ];
+        $tidy = new tidy();
+        $html = $tidy->repairString($html, $tidyConfig);
+    }
     // 预处理特殊符号进行转义
     $html = preg_replace('/&(?!(#[0-9]+|[a-z]+);)/i', '&amp;', $html);
     $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); // 处理中文编码
