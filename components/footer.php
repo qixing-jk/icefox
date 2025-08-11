@@ -6,9 +6,10 @@ if (!defined('__TYPECHO_ROOT_DIR__'))
 ?>
 
 <div class="fixed left-10 bottom-10 text-gray-300 text-[12px] side-area side-area-left">
-    <div class="flex flex-col"><div>Powered By <a href="https://xiaopanglian.com" class="cursor-pointer text-gray-300"
-            target="_blank">Icefox Theme</a> .
-    <a href="https://blog.qixing1217.top/article/8879698e-363b-407a-9ec4-72f713c4e0bd" class="cursor-pointer text-gray-600" target="_blank">部署教程</a></div>
+    <div class="flex flex-col">
+        <div>Powered By <a href="https://xiaopanglian.com" class="cursor-pointer text-gray-300"
+                target="_blank">Icefox Theme</a> .
+    <a href="https://blog.qixing1217.top/article/deploy-typecho-dynamic-blog-on-vercel-using-icefox-theme-and-ssl-database-connection" class="cursor-pointer text-gray-600" target="_blank">部署教程</a></div>
         <?php
         $beian = $this->options->beian;
         if (!empty($beian)) {
@@ -24,11 +25,9 @@ if (!defined('__TYPECHO_ROOT_DIR__'))
 </div>
 <div class="fixed right-10 bottom-10 side-area">
     <div
-        class="w-[36px] h-[36px] cursor-pointer rounded-3xl bg-[#E8E9EC] hover:bg-[#DDDDDD] flex justify-center items-center mb-2">
-        <img src="<?php $this->options->themeUrl('assets/svgs/btn-moon.svg'); ?>" class="cursor-pointer"
-            @click="darkMode=true" x-show="darkMode==false" />
-        <img src="<?php $this->options->themeUrl('assets/svgs/btn-sun.svg'); ?>" class="cursor-pointer"
-            @click="darkMode=false" x-show="darkMode==true" />
+        class="w-[36px] h-[36px] cursor-pointer rounded-3xl bg-[#E8E9EC] hover:bg-[#DDDDDD] flex justify-center items-center mb-2 darkMode">
+        <img src="<?php $this->options->themeUrl('assets/svgs/btn-moon.svg'); ?>" class="cursor-pointer btn-moon" />
+        <img src="<?php $this->options->themeUrl('assets/svgs/btn-sun.svg'); ?>" class="cursor-pointer btn-sun" />
 
     </div>
     <div class="w-[36px] h-[36px] cursor-pointer rounded-3xl bg-[#E8E9EC] hover:bg-[#DDDDDD] hidden"
@@ -45,9 +44,9 @@ if (!defined('__TYPECHO_ROOT_DIR__'))
         $topMusic_arr = preg_split('/\r\n|\n/', $topMusics);
         foreach ($topMusic_arr as $row) {
             $fl = explode('||', $row);
-            ?>
+    ?>
             <div data-id="<?php echo $fl[0]; ?>" data-cover="<?php echo $fl[1]; ?>"></div>
-            <?php
+    <?php
         }
     }
     ?>
@@ -57,9 +56,9 @@ if (!defined('__TYPECHO_ROOT_DIR__'))
     <div class="bg-white dark:bg-black/30 backdrop-blur-md"></div>
     <input class="webSiteHomeUrl" value="<?php echo getWebsiteHomeUrl(); ?>" />
     <input class="_currentPage" value="<?php if ($this->_currentPage > 1)
-        echo $this->_currentPage;
-    else
-        echo 1; ?>" />
+                                            echo $this->_currentPage;
+                                        else
+                                            echo 1; ?>" />
     <input class="_totalPage" value="<?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?>" />
     <input id="commentsRequireMail" value="<?php echo $this->options->commentsRequireMail; ?>" />
     <input id="commentsRequireURL" value="<?php echo $this->options->commentsRequireURL; ?>" />
@@ -93,8 +92,8 @@ if (!defined('__TYPECHO_ROOT_DIR__'))
         $screenName = $user->screenName; // 用户昵称
         $mail = $user->mail; // 用户邮箱
         $url = $user->url; // 用户网址
-    
-        ?>
+
+    ?>
         <div id="login-is">1</div>
         <div id="login-screenName">
             <?php echo $screenName; ?>
@@ -105,7 +104,7 @@ if (!defined('__TYPECHO_ROOT_DIR__'))
         <div id="login-url">
             <?php echo $url; ?>
         </div>
-        <?php
+    <?php
     }
     ?>
 </div>
